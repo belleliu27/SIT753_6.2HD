@@ -18,6 +18,3 @@ EXPOSE 3000
 
 # Command to run the application
 CMD ["node", "server/app.js"]
-
-# Add database
-CMD ["node", "db.js"]
