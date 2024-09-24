@@ -1,6 +1,7 @@
 pipeline {
     agent any 
     environment {
+        // Add Docker path to Jenkins' environment path
         PATH = "/usr/local/bin:${env.PATH}"
     }
 
@@ -18,6 +19,14 @@ pipeline {
                 script {
                     // Run tests in the Docker container
                     sh 'docker run --rm belle/portfolio-app npm test'
+                }
+            }
+        }
+        stage('Code Quality Analysis') {
+            steps {
+                script {
+                    // Run ESLint for code quality analysis
+                    sh 'docker run --rm belle/portfolio-app npx eslint .'
                 }
             }
         }
